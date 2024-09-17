@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactGA from 'react-ga4';
 
-export class About extends Component {
+export class AboutMe extends Component {
 
     constructor() {
         super();
@@ -103,10 +103,10 @@ export class About extends Component {
     }
 }
 
-export default About;
+export default AboutMe;
 
 export const displayAbout = () => {
-    return <About />;
+    return <AboutMe />;
 }
 
 
@@ -232,11 +232,7 @@ function Skills() {
 }
 
 function Projects() {
-    const project_list = [
-        {
-
-        }
-    ];
+    const project_list = [];
 
     const tag_colors = {
         "javascript": "yellow-300",
