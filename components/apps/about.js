@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+const gitHubUser = require('../util components/gh-user')
 
 export class AboutMe extends Component {
 
@@ -15,26 +16,26 @@ export class AboutMe extends Component {
     componentDidMount() {
         this.screens = {
             "about": <About />,
-            "education": <Education />,
-            "skills": <Skills />,
+            // "education": <Education />,
+            // "skills": <Skills />,
             "projects": <Projects />,
-            "resume": <Resume />,
+            // "resume": <Resume />,
         }
 
         let lastVisitedScreen = localStorage.getItem("about-section");
         if (lastVisitedScreen === null || lastVisitedScreen === undefined) {
-            lastVisitedScreen = "about";
+            lastVisitedScreen = "about"
         }
 
         // focus last visited screen
-        this.changeScreen(document.getElementById(lastVisitedScreen));
+        this.changeScreen(document.getElementById(lastVisitedScreen))
     }
 
     changeScreen = (e) => {
         const screen = e.id || e.target.id;
 
         // store this state
-        localStorage.setItem("about-section", screen);
+        localStorage.setItem("about-section", screen)
 
         this.setState({
             screen: this.screens[screen],
@@ -43,7 +44,7 @@ export class AboutMe extends Component {
     }
 
     showNavBar = () => {
-        this.setState({ navbar: !this.state.navbar });
+        this.setState({ navbar: !this.state.navbar })
     }
 
     renderNavLinks = () => {
@@ -53,24 +54,21 @@ export class AboutMe extends Component {
                     <img className=" w-3 md:w-4" alt="about" src="./themes/Yaru/status/about.svg" />
                     <span className=" ml-1 md:ml-2 text-gray-50 ">About Me</span>
                 </div>
-                <div id="education" tabIndex="0" onFocus={this.changeScreen} className={(this.state.active_screen === "education" ? " bg-ub-orange bg-opacity-100 hover:bg-opacity-95" : " hover:bg-gray-50 hover:bg-opacity-5 ") + " w-28 md:w-full md:rounded-none rounded-sm cursor-default outline-none py-1.5 focus:outline-none duration-100 my-0.5 flex justify-start items-center pl-2 md:pl-2.5"}>
+                {/* <div id="education" tabIndex="0" onFocus={this.changeScreen} className={(this.state.active_screen === "education" ? " bg-ub-orange bg-opacity-100 hover:bg-opacity-95" : " hover:bg-gray-50 hover:bg-opacity-5 ") + " w-28 md:w-full md:rounded-none rounded-sm cursor-default outline-none py-1.5 focus:outline-none duration-100 my-0.5 flex justify-start items-center pl-2 md:pl-2.5"}>
                     <img className=" w-3 md:w-4" alt="education" src="./themes/Yaru/status/education.svg" />
                     <span className=" ml-1 md:ml-2 text-gray-50 ">Education</span>
-                </div>
-                <div id="skills" tabIndex="0" onFocus={this.changeScreen} className={(this.state.active_screen === "skills" ? " bg-ub-orange bg-opacity-100 hover:bg-opacity-95" : " hover:bg-gray-50 hover:bg-opacity-5 ") + " w-28 md:w-full md:rounded-none rounded-sm cursor-default outline-none py-1.5 focus:outline-none duration-100 my-0.5 flex justify-start items-center pl-2 md:pl-2.5"}>
+                </div> */}
+                {/* <div id="skills" tabIndex="0" onFocus={this.changeScreen} className={(this.state.active_screen === "skills" ? " bg-ub-orange bg-opacity-100 hover:bg-opacity-95" : " hover:bg-gray-50 hover:bg-opacity-5 ") + " w-28 md:w-full md:rounded-none rounded-sm cursor-default outline-none py-1.5 focus:outline-none duration-100 my-0.5 flex justify-start items-center pl-2 md:pl-2.5"}>
                     <img className=" w-3 md:w-4" alt="skills" src="./themes/Yaru/status/skills.svg" />
                     <span className=" ml-1 md:ml-2 text-gray-50 ">Skills</span>
-                </div>
+                </div> */}
                 <div id="projects" tabIndex="0" onFocus={this.changeScreen} className={(this.state.active_screen === "projects" ? " bg-ub-orange bg-opacity-100 hover:bg-opacity-95" : " hover:bg-gray-50 hover:bg-opacity-5 ") + " w-28 md:w-full md:rounded-none rounded-sm cursor-default outline-none py-1.5 focus:outline-none duration-100 my-0.5 flex justify-start items-center pl-2 md:pl-2.5"}>
                     <img className=" w-3 md:w-4" alt="projects" src="./themes/Yaru/status/projects.svg" />
                     <span className=" ml-1 md:ml-2 text-gray-50 ">Projects</span>
                 </div>
-                <div id="resume" tabIndex="0" onFocus={this.changeScreen} className={(this.state.active_screen === "resume" ? " bg-ub-orange bg-opacity-100 hover:bg-opacity-95" : " hover:bg-gray-50 hover:bg-opacity-5 ") + " w-28 md:w-full md:rounded-none rounded-sm cursor-default outline-none py-1.5 focus:outline-none duration-100 my-0.5 flex justify-start items-center pl-2 md:pl-2.5"}>
+                {/* <div id="resume" tabIndex="0" onFocus={this.changeScreen} className={(this.state.active_screen === "resume" ? " bg-ub-orange bg-opacity-100 hover:bg-opacity-95" : " hover:bg-gray-50 hover:bg-opacity-5 ") + " w-28 md:w-full md:rounded-none rounded-sm cursor-default outline-none py-1.5 focus:outline-none duration-100 my-0.5 flex justify-start items-center pl-2 md:pl-2.5"}>
                     <img className=" w-3 md:w-4" alt="resume" src="./themes/Yaru/status/download.svg" />
                     <span className=" ml-1 md:ml-2 text-gray-50 ">Resume</span>
-                </div>
-                {/* <div className='my-0.5 w-28 md:w-full h-8 px-2 md:px-2.5 flex' >
-                    <iframe src="https://github.com/sponsors/vivek9patel/button" title="Sponsor vivek9patel" width={"100%"} height={"100%"} ></iframe>
                 </div> */}
             </>
         );
@@ -94,40 +92,22 @@ export class AboutMe extends Component {
                     {this.state.screen}
                 </div>
             </div>
-        );
+        )
     }
 }
 
-export default AboutMe;
+export default AboutMe
 
 export const displayAbout = () => {
-    return <AboutMe />;
+    return <AboutMe />
 }
 
 
 function About() {
-    return (
-        <>
-            <div className="w-20 md:w-28 my-4 bg-white rounded-full">
-                <img className="w-full" src="./images/logos/bitmoji.png" alt="Logo" />
-            </div>
-            <div className=" mt-4 md:mt-8 text-lg md:text-2xl text-center px-1">
-                <div>my name is <span className="font-bold">Vivek Patel</span> ,</div>
-                <div className="font-normal ml-1">I'm a <span className="text-pink-600 font-bold">Frontend Engineer!</span></div>
-            </div>
-            <div className=" mt-4 relative md:my-8 pt-px bg-white w-32 md:w-48">
-                <div className="bg-white absolute rounded-full p-0.5 md:p-1 top-0 transform -translate-y-1/2 left-0"></div>
-                <div className="bg-white absolute rounded-full p-0.5 md:p-1 top-0 transform -translate-y-1/2 right-0"></div>
-            </div>
-            <ul className=" mt-4 leading-tight tracking-tight text-sm md:text-base w-5/6 md:w-3/4 emoji-list">
-                <li className=" list-pc">I'm a <span className=" font-medium">Graduate Student</span> currently pursuing Computer Science. I've completed my 6 month SWE intern at <u className=' cursor-pointer '> <a href="https://en.wikipedia.org/wiki/HackerRank" target={"_blank"}>HackerRank</a> </u>, and now I'm looking for full-time frontend engineer roles! ( Hit me up <a className='text-underline' href='mailto:vivek.p9737@gmail.com'><u>@vivek.p9737@gmail.com</u></a> :) )</li>
-                <li className=" mt-3 list-building"> I enjoy building awesome softwares that solve practical problems.</li>
-                <li className=" mt-3 list-time"> When I am not coding my next project, I like to spend my time reading books, playing minecraft or watching <a href="https://www.youtube.com/channel/UCBa659QWEk1AI4Tg--mrJ2A" target="_blank" rel="noreferrer"> tom scott's videos.</a></li>
-                <li className=" mt-3 list-star"> And I also have interest in Deep Learning & Computer Vision!</li>
-            </ul>
-        </>
-    )
+    const readme = gitHubUser.getReadmeContent()
+    return readme
 }
+
 function Education() {
     return (
         <>
@@ -143,30 +123,31 @@ function Education() {
                     <div className=" text-lg md:text-xl text-left font-bold leading-tight">
                         Arizona State University
                     </div>
-                    <div className=" text-sm text-gray-400 mt-0.5">2022 - 2024</div>
-                    <div className=" text-sm md:text-base">Computer Science</div>
+                    <div className="text-sm text-gray-400 mt-0.5">2022 - 2024</div>
+                    <div className="text-sm md:text-base">Computer Science</div>
                     <div className="text-sm text-gray-300 font-bold mt-1">GPA &nbsp; 4.0/4.0</div>
                 </li>
                 <li className="list-disc">
-                    <div className=" text-lg md:text-xl text-left font-bold leading-tight">
+                    <div className="text-lg md:text-xl text-left font-bold leading-tight">
                         Pandit Deendayal Energy University - PDEU
                     </div>
-                    <div className=" text-sm text-gray-400 mt-0.5">2018 - 2022</div>
-                    <div className=" text-sm md:text-base">Computer Engineering</div>
+                    <div className="text-sm text-gray-400 mt-0.5">2018 - 2022</div>
+                    <div className="text-sm md:text-base">Computer Engineering</div>
                     <div className="text-sm text-gray-300 font-bold mt-1">CGPA &nbsp; 9.35/10</div>
                 </li>
                 <li className="list-disc mt-5">
-                    <div className=" text-lg md:text-xl text-left font-bold leading-tight">
+                    <div className="text-lg md:text-xl text-left font-bold leading-tight">
                         Class 12<sup>th</sup> (GSEB)
                     </div>
-                    <div className=" text-sm text-gray-400 mt-0.5">2016 - 2018</div>
-                    <div className=" text-sm md:text-base">Maths, Physics, Chemistry</div>
+                    <div className="text-sm text-gray-400 mt-0.5">2016 - 2018</div>
+                    <div className="text-sm md:text-base">Maths, Physics, Chemistry</div>
                     <div className="text-sm text-gray-300 font-bold mt-1">Percentile Rank &nbsp; 94.1%</div>
                 </li>
             </ul>
         </>
     )
 }
+
 function Skills() {
     return (
         <>
@@ -227,7 +208,7 @@ function Skills() {
 }
 
 function Projects() {
-    const project_list = [];
+    const project_list = gitHubUser.getRepositories();
 
     const tag_colors = {
         "javascript": "yellow-300",
@@ -257,41 +238,22 @@ function Projects() {
                     <div className="bg-white absolute rounded-full p-0.5 md:p-1 top-0 transform -translate-y-1/2 right-full"></div>
                 </div>
             </div>
-            <iframe src="https://github.com/sponsors/vivek9patel/card" title="Sponsor vivek9patel" className='my-4 w-5/6 md:w-3/4' ></iframe>
 
             {
                 project_list.map((project, index) => {
-                    const projectNameFromLink = project.link.split('/')
-                    const projectName = projectNameFromLink[projectNameFromLink.length - 1]
                     return (
-                        <a key={index} href={project.link} target="_blank" rel="noreferrer" className="flex w-full flex-col px-4">
+                        <a key={index} href={project.html_url} target="_blank" rel="noreferrer" className="flex w-full flex-col px-4">
                             <div className="w-full py-1 px-2 my-2 border border-gray-50 border-opacity-10 rounded hover:bg-gray-50 hover:bg-opacity-5 cursor-pointer">
                                 <div className="flex flex-wrap justify-between items-center">
                                     <div className='flex justify-center items-center'>
                                         <div className=" text-base md:text-lg mr-2">{project.name.toLowerCase()}</div>
-                                        <iframe src={`https://ghbtns.com/github-btn.html?user=vivek9patel&repo=${projectName}&type=star&count=true`} frameBorder="0" scrolling="0" width="150" height="20" title={project.name.toLowerCase() + "-star"}></iframe>
+                                        {/* <iframe src={`https://ghbtns.com/github-btn.html?user=vivek9patel&repo=${project.name}&type=star&count=true`} frameBorder="0" scrolling="0" width="150" height="20" title={project.name.toLowerCase() + "-star"}></iframe> */}
                                     </div>
-                                    <div className="text-gray-300 font-light text-sm">{project.date}</div>
+                                    <div className="text-gray-300 font-light text-sm">{new Date(project.created_at).toLocaleDateString()}</div>
                                 </div>
-                                <ul className=" tracking-normal leading-tight text-sm font-light ml-4 mt-1">
-                                    {
-                                        project.description.map((desc, index) => {
-                                            return <li key={index} className="list-disc mt-1 text-gray-100">{desc}</li>;
-                                        })
-                                    }
-                                </ul>
+                                <div className="tracking-normal leading-tight text-sm font-light mt-1 text-gray-100">{project.description}</div>
                                 <div className="flex flex-wrap items-start justify-start text-xs py-2">
-                                    {
-                                        (project.domains ?
-                                            project.domains.map((domain, index) => {
-                                                const borderColorClass = `border-${tag_colors[domain]}`
-                                                const textColorClass = `text-${tag_colors[domain]}`
-
-                                                return <span key={index} className={`px-1.5 py-0.5 w-max border ${borderColorClass} ${textColorClass} m-1 rounded-full`}>{domain}</span>
-                                            })
-
-                                            : null)
-                                    }
+                                    <span className={`px-1.5 py-0.5 w-max border m-1 rounded-full`}>{project.language}</span>
                                 </div>
                             </div>
                         </a>

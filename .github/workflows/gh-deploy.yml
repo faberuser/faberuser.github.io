@@ -31,10 +31,10 @@ jobs:
       - name: Building 🧱
         run: yarn build
         env:
-          NEXT_PUBLIC_TRACKING_ID: G-8FBXBFXC10
-          NEXT_PUBLIC_SERVICE_ID: service_qt4ryip
+          NEXT_PUBLIC_SERVICE_ID: service_7xjyigs
           NEXT_PUBLIC_TEMPLATE_ID: template_2ni69n8
-          NEXT_PUBLIC_USER_ID: user_Do31sKneP4eYfn5n1nLTD
+          NEXT_PUBLIC_USER_ID: Z3Vjf0qDS5Af1d109
+          NEXT_PUBLIC_GITHUB_USERNAME: faberuser
 
       - name: Exporting Bundle Files 🎪
         run: yarn export
