@@ -104,8 +104,7 @@ export const displayAbout = () => {
 
 
 function About() {
-    const readme = gitHubUser.getReadmeContent()
-    return readme
+    return gitHubUser.getReadmeContent()
 }
 
 function Education() {
@@ -208,26 +207,9 @@ function Skills() {
 }
 
 function Projects() {
-    const project_list = gitHubUser.getRepositories();
-
-    const tag_colors = {
-        "javascript": "yellow-300",
-        "firebase": "red-600",
-        "firestore": "red-500",
-        "firebase auth": "red-400",
-        "chrome-extension": "yellow-400",
-        "flutter": "blue-400",
-        "dart": "blue-500",
-        "react-native": "purple-500",
-        "html5": "pink-600",
-        "sass": "pink-400",
-        "tensorflow": "yellow-600",
-        "django": "green-600",
-        "python": "green-200",
-        "codeforces-api": "gray-300",
-        "tailwindcss": "blue-300",
-        "next.js": "purple-600"
-    }
+    const username = gitHubUser.getUsername()
+    const project_list = gitHubUser.getRepositories()
+    const sortedProjectList = project_list.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
 
     return (
         <>
@@ -240,16 +222,20 @@ function Projects() {
             </div>
 
             {
-                project_list.map((project, index) => {
+                sortedProjectList.map((project, index) => {
                     return (
                         <a key={index} href={project.html_url} target="_blank" rel="noreferrer" className="flex w-full flex-col px-4">
                             <div className="w-full py-1 px-2 my-2 border border-gray-50 border-opacity-10 rounded hover:bg-gray-50 hover:bg-opacity-5 cursor-pointer">
                                 <div className="flex flex-wrap justify-between items-center">
                                     <div className='flex justify-center items-center'>
                                         <div className=" text-base md:text-lg mr-2">{project.name.toLowerCase()}</div>
-                                        {/* <iframe src={`https://ghbtns.com/github-btn.html?user=vivek9patel&repo=${project.name}&type=star&count=true`} frameBorder="0" scrolling="0" width="150" height="20" title={project.name.toLowerCase() + "-star"}></iframe> */}
+                                        {project.fork && <span className={`text-xs px-1.5 py-0.5 w-max border m-1 rounded-full mr-4`}>Fork</span>}
+                                        <iframe src={`https://ghbtns.com/github-btn.html?user=${username}&repo=${project.name}&type=star&count=true`} frameBorder="0" scrolling="0" width="150" height="20" title={project.name.toLowerCase() + "-star"}></iframe>
                                     </div>
-                                    <div className="text-gray-300 font-light text-sm">{new Date(project.created_at).toLocaleDateString()}</div>
+                                    <div className="text-gray-300 font-light text-sm">
+                                        Created: {new Date(project.created_at).toLocaleDateString()} |
+                                        Updated: {new Date(project.updated_at).toLocaleDateString()}
+                                    </div>
                                 </div>
                                 <div className="tracking-normal leading-tight text-sm font-light mt-1 text-gray-100">{project.description}</div>
                                 <div className="flex flex-wrap items-start justify-start text-xs py-2">
@@ -263,6 +249,7 @@ function Projects() {
         </>
     )
 }
+
 function Resume() {
     return (
         <iframe className="h-full w-full" src="./files/Vivek-Patel-Resume.pdf" title="vivek patel resume" frameBorder="0"></iframe>

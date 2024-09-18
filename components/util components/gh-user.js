@@ -57,6 +57,14 @@ class GitHubUser {
     }
 }
 
-const gitHubUser = new GitHubUser()
+const gitHubUser = new GitHubUser();
 
-module.exports = gitHubUser
+(async () => {
+    try {
+        await gitHubUser.init();
+    } catch (error) {
+        console.error('Error initializing GitHub user:', error);
+    }
+})();
+
+module.exports = gitHubUser;
