@@ -13,19 +13,25 @@ class GitHubUser {
     async init() {
         this.baseUrl = 'https://api.github.com'
         this.username = process.env.NEXT_PUBLIC_GITHUB_USERNAME.trim()
-        const response = await axios.get(`${this.baseUrl}/users/${this.username}`)
+        const response = await axios.get(`${this.baseUrl}/users/${this.username}`, {
+            headers: { 'Content-Type': 'application/vnd.github.v3+json' },
+        })
 
         this.name = response.data.name
         this.email = response.data.email
         this.avatarUrl = response.data.avatar_url
 
-        const reposResponse = await axios.get(`${this.baseUrl}/users/${this.username}/repos`)
+        const reposResponse = await axios.get(`${this.baseUrl}/users/${this.username}/repos`, {
+            headers: { 'Content-Type': 'application/vnd.github.v3+json' },
+        })
         this.repositories = reposResponse.data
 
         const hasUserRepo = this.repositories.some(repo => repo.name === this.username)
 
         if (hasUserRepo) {
-            const readmeResponse = await axios.get(`${this.baseUrl}/repos/${this.username}/${this.username}/readme`)
+            const readmeResponse = await axios.get(`${this.baseUrl}/repos/${this.username}/${this.username}/readme`, {
+                headers: { 'Content-Type': 'application/vnd.github.v3+json' },
+            })
             this.readmeContent = Buffer.from(readmeResponse.data.content, 'base64').toString('utf8')
         } else {
             this.readmeContent = "User does not have a profile readme"
